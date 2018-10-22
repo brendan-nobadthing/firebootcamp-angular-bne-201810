@@ -1,0 +1,12 @@
+
+.button-cell {
+  width: 140px;
+  white-space: nowrap;
+}
+.button-cell button {
+  margin-right: 10px;
+}
+.button-cell button:last-child {
+  margin-right: 0px;
+}
+
