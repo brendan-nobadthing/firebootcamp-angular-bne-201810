@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Company } from '../company';
+import { CompanyService } from '../company.service';
 
 @Component({
   selector: 'fbc-company-list',
@@ -10,18 +11,13 @@ export class CompanyListComponent implements OnInit {
 
   companies: Company[];
 
-  constructor() { }
+  constructor(private companyService: CompanyService) {
+  }
 
   ngOnInit() {
-    this.companies = this.getCompanies();
+    this.companies = this.companyService.getCompanies();
   }
 
-  getCompanies(): Company[] {
-    return [
-      { name: 'SSW', phone: 123456, email: 'ssw@ssw.com.au' },
-      { name: 'Microsoft', phone: 123456, email: 'info@microsoft.com' },
-      { name: 'Google', phone: 123456, email: 'info@google.com' },
-    ];
-  }
+
 
 }
