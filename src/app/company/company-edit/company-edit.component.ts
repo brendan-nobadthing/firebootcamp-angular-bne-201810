@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CompanyService } from '../company.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Company } from '../company';
 
 @Component({
   selector: 'fbc-company-edit',
@@ -22,13 +23,16 @@ export class CompanyEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.companyId = this.activatedRoute.snapshot.params['id'];
-    this.isNewCompany = this.companyId == 0;
+    this.companyId = ~~(this.activatedRoute.snapshot.params['id']);
+    this.isNewCompany = this.companyId === 0;
 
     this.buildForm();
 
     if(!this.isNewCompany){
-      // Get Company details
+      this.companyService.getCompany(this.companyId)
+        .subscribe(company => {
+          this.companyForm.patchValue(company);
+        })
     }
   }
 
@@ -43,10 +47,18 @@ export class CompanyEditComponent implements OnInit {
   }
 
   saveCompany(){
-    this.companyService.addCompany(this.companyForm.value)
-    .subscribe(company => {
-      this.router.navigateByUrl('/company/list');
-    })
+    if(this.isNewCompany){
+      this.companyService.addCompany(this.companyForm.value)
+      .subscribe(company => {
+        this.router.navigateByUrl('/company/list');
+      })
+    }else{
+      const updatedCompany: Company = {...this.companyForm.value, id: this.companyId}
+      this.companyService.updateCompany(updatedCompany)
+      .subscribe(company => {
+        this.router.navigateByUrl('/company/list');
+      })
+    }
   }
 
 }
