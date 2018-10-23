@@ -3,7 +3,7 @@ import { Company } from './company';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { timingSafeEqual } from 'crypto';
+
 
 @Injectable({
   providedIn: 'root'
