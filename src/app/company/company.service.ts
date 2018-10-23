@@ -12,7 +12,7 @@ export class CompanyService {
 
   API_BASE = environment.API_BASE; // 'http://firebootcamp-crm-api.azurewebsites.net/api';
 
-  companies$ = new BehaviorSubject<Company[]>([]);
+  private companies$ = new BehaviorSubject<Company[]>([]);
 
   constructor(private httpClient: HttpClient) {
     this.loadCompanies();
