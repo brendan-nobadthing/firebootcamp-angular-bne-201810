@@ -59,7 +59,6 @@ describe('AppComponent - Test Bed', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
   let companySvc: CompanyService;
-  let de: DebugElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -97,7 +96,7 @@ describe('AppComponent - Test Bed', () => {
       expect(c).toEqual(1);
     }));
 
-    let el = fixture.debugElement.query(By.css('#company-count')).nativeElement;
+    const el = fixture.debugElement.query(By.css('#company-count')).nativeElement;
     expect(el.textContent).toEqual('1');
 
   });

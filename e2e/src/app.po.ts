@@ -5,7 +5,11 @@ export class AppPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
+  getH1Text() {
     return element(by.css('fbc-root h1')).getText();
+  }
+
+  clickTitle() {
+    return element(by.css('fbc-root a')).click();
   }
 }
