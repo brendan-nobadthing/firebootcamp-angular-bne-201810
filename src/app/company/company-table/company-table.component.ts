@@ -23,8 +23,6 @@ export class CompanyTableComponent implements OnInit {
     this.deleteClicked.emit(company);
   }
 
-  logChanges() {
-    console.log('CHANGES!');
-  }
+
 
 }
